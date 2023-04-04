@@ -1,6 +1,5 @@
 import Container from '../components/container'
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
+import Stories from '../components/stories'
 import Intro from '../components/intro'
 import Layout from '../components/layout'
 import { getAllPosts } from '../lib/api'
@@ -8,13 +7,13 @@ import Head from 'next/head'
 import { CMS_NAME } from '../lib/constants'
 import Post from '../interfaces/post'
 
+const baseUrl = process.env.STRAPI_BASE_URL
+
 type Props = {
   allPosts: Post[]
 }
 
 export default function Index({ allPosts }: Props) {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
   return (
     <>
       <Layout>
@@ -23,17 +22,7 @@ export default function Index({ allPosts }: Props) {
         </Head>
         <Container>
           <Intro />
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          <Stories posts={allPosts} />
         </Container>
       </Layout>
     </>
@@ -41,16 +30,20 @@ export default function Index({ allPosts }: Props) {
 }
 
 export const getStaticProps = async () => {
-  const allPosts = getAllPosts([
-    'title',
-    'date',
-    'slug',
-    'author',
-    'coverImage',
-    'excerpt',
-  ])
+  // const allPosts = getAllPosts([
+  //   'title',
+  //   'date',
+  //   'slug',
+  //   'author',
+  //   'coverImage',
+  //   'excerpt',
+  // ])
 
+    console.log("BASE URL",`${baseUrl}/articles`)
+  const res = await fetch(`${baseUrl}/articles?populate[0]=cover`, {method: "get"})
+  const allPosts = await res.json()
+  console.log("ALL POSTS", allPosts.data[0].attributes, allPosts.data[0].attributes.cover.data)
   return {
-    props: { allPosts },
+    props: { allPosts: allPosts.data.map(i => i.attributes) },
   }
 }
