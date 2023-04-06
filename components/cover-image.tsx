@@ -6,9 +6,10 @@ type Props = {
   title: string
   src: string
   slug?: string
+  postId?: number
 }
 
-const CoverImage = ({ title, src, slug }: Props) => {
+const CoverImage = ({ title, src, slug, postId }: Props) => {
   const image = (
     <Image
       src={src}
@@ -23,7 +24,7 @@ const CoverImage = ({ title, src, slug }: Props) => {
   return (
     <div className="sm:mx-0">
       {slug ? (
-        <Link as={`/posts/${slug}`} href="/posts/[slug]" aria-label={title}>
+        <Link as={`/posts/${slug}?id=${postId}`} href={`/posts/[slug]?id=${postId}`} aria-label={title}>
           {image}
         </Link>
       ) : (

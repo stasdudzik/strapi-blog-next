@@ -11,6 +11,7 @@ type PostType = {
     url: string;
   };
   content: string;
+  id: number;
 };
 
 export default PostType;

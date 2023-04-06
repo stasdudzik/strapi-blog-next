@@ -10,7 +10,9 @@ type Props = {
   date: string
   excerpt: string
   author: Author
-  slug: string
+  slug: string,
+  id: number
+
 }
 
 const PostPreview = ({
@@ -20,17 +22,17 @@ const PostPreview = ({
   excerpt,
   author,
   slug,
+  id
 }: Props) => {
-  console.log("AUTHOR", author)
   return (
     <div>
       <div className="mb-5">
-        <CoverImage slug={slug} title={title} src={coverImage} />
+        <CoverImage slug={slug} title={title} src={coverImage} postId={id} />
       </div>
       <h3 className="text-3xl mb-3 leading-snug">
         <Link
-          as={`/posts/${slug}`}
-          href="/posts/[slug]"
+          as={`/posts/${slug}?id=${id}`}
+          href={`/posts/[slug]?id=${id}`}
           className="hover:underline"
         >
           {title}
