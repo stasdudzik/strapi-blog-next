@@ -14,7 +14,8 @@ jobs:
           username: ${{ secrets.STAGING_USERNAME}}
           key: ${{secrets.STAGING_KEY}}
           port: ${{secrets.STAGING_PORT}}
-          script: cd apps/blog/strapi-blog-next
+          script: |
+            cd apps/blog/strapi-blog-next
             git pull
             npm run build
             pm2 restart blog-front
