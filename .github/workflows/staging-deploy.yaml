@@ -16,6 +16,7 @@ jobs:
           port: ${{secrets.STAGING_PORT}}
           script: |
             cd apps/blog/strapi-blog-next
+            echo | ls
             git pull
             npm run build
             pm2 restart blog-front
