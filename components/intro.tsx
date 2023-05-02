@@ -5,7 +5,7 @@ const Intro = () => {
         Apply 💡
       </h1>
       <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
-        Hi, I'm <b>Staszek</b> and I sometimes write about stuff I learned (mostly coding)
+        Hi, I'm <a href={'about'} className="font-medium  underline hover:no-underline"><b>Staszek</b></a> and I sometimes write about stuff I learned (mostly coding)
       </h4>
     </section>
   )
