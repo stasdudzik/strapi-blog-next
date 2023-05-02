@@ -17,7 +17,7 @@ jobs:
           script: |
             cd apps/blog/strapi-blog-next
             echo | ls
-            echo | "***** ***** ****"
+            echo "***** ***** **** ***** ***** **** ***** ***** ****"
             echo | git config --list
             echo | ssh -T git@github.com
             git pull
