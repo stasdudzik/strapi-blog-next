@@ -10,6 +10,7 @@ const Footer = () => {
           </h3>
           <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
             <a
+              href={`about`}
               className="mx-3 font-bold hover:underline"
             >
               About me

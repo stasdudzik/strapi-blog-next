@@ -19,9 +19,7 @@ type Props = {
 }
 
 export default function Post({ post, morePosts, preview }: Props) {
-  console.log("POST", post)
   const router = useRouter()
-  console.log("ROUTER", router)
   const title = `${post?.title} | Staszek`
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
@@ -58,7 +56,6 @@ export const getServerSideProps = async ({query}) => {
   const {id} = query
   const res = await fetch(`${baseUrl}/articles/${id}?populate=cover`, {method: "get"})
   const post = await res.json()
-  console.log("post in slug", post)
 
     const content = await markdownToHtml(post.data.attributes.content || '')
 
