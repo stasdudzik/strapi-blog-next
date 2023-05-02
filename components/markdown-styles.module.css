@@ -3,11 +3,17 @@
 }
 
 .markdown p,
-.markdown ul,
-.markdown ol,
 .markdown blockquote {
   @apply my-6;
 }
+.markdown ul {
+  @apply max-w-md space-y-1 list-disc list-inside;
+}
+
+.markdown ol { 
+  @apply max-w-md space-y-1 list-decimal list-inside;
+}
+
 
 .markdown h2 {
   @apply text-3xl mt-12 mb-4 leading-snug;
@@ -15,4 +21,8 @@
 
 .markdown h3 {
   @apply text-2xl mt-8 mb-4 leading-snug;
+}
+
+.markdown a {
+  @apply font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline;
 }
