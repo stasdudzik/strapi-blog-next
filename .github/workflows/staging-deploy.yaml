@@ -1,7 +1,6 @@
 name: Staging deploy
 on:
   workflow_dispatch:
-
 jobs:
   build:
     name: Build and deploy

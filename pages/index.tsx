@@ -28,7 +28,7 @@ export default function Index({ allPosts }: Props) {
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch(`${baseUrl}/articles?populate[0]=cover`, {method: "get"})
+  const res = await fetch(`${baseUrl}/articles?populate[0]=cover&sort[0]=created%3Adesc`, {method: "get"})
   const allPosts = await res.json()
   return {
     props: { allPosts: allPosts.data.map((i) => {return {id:i.id, ...i.attributes}}) },
